@@ -33,7 +33,7 @@ class Board:
         self.Board=[]
         self.WinNumber=WinNumber
         for X in range(Width):
-            self.Board.append([" " for Y in range(Height)])
+            self.Board.append(["  " for Y in range(Height)])
     
     def PrintBoard(self):
         for Y in range(self.Height):
@@ -44,7 +44,7 @@ class Board:
 
     def DropPeice(self,Column,Peice):
         for X,Y in enumerate(self.Board[Column]):
-            if self.Board[Column][self.Height - X - 1] == " ":
+            if self.Board[Column][self.Height - X - 1] == "  ":
                 self.Board[Column][self.Height - X - 1]=Peice
                 return True
         return False
@@ -71,9 +71,9 @@ class Board:
                     ListLD.append(self.Board[CounterX + A][self.Height - (CounterY + A) - 1])
 
 
-                if AllSame(ListLD) and ListLD[0] != " ":
+                if AllSame(ListLD) and ListLD[0] != "  ":
                     return [True,ListLD[0]]
-                if AllSame(ListRD) and ListRD[0] != " ":
+                if AllSame(ListRD) and ListRD[0] != "  ":
                     return [True,ListRD[0]]
                 
                 #print(ListLD,ListRD)
@@ -88,7 +88,7 @@ class Board:
                 for A in range(self.WinNumber):
                     List.append(self.Board[CounterX + A][Y])
                 #print(List)
-                if AllSame(List) and List[0] != " ":
+                if AllSame(List) and List[0] != "  ":
                     return [True,List[0]]
             CounterX+=1
         return [False]
@@ -101,7 +101,7 @@ class Board:
                 for A in range(self.WinNumber):
                     List.append(self.Board[X][CounterY + A])
                 #print(List)
-                if AllSame(List) and List[0] != " ":
+                if AllSame(List) and List[0] != "  ":
                     return [True,List[0]]
             CounterY+=1
         return [False]
