@@ -106,6 +106,13 @@ class Board:
             CounterY+=1
         return [False]
 
+    def IsFull(self):
+        for X in self.Board:
+            for Y in X:
+                if Y == "  ":
+                    return False
+        return True
+    
 def RunGame():
     Width=7
     Height=6
@@ -140,8 +147,14 @@ def RunGame():
             elif Col[0]:
                 Winner=Col[1]
             
+            GameEnd=False
             if Winner != "":
                 print(f"{Winner} has won!")
+                GameEnd=True
+            if GameBoard.IsFull():
+                print("Draw!")
+                GameEnd=True
+            if GameEnd:
                 Input=input("Again (Y/N): ")
                 if Input.lower() == "y":
                     return
