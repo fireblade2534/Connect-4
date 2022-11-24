@@ -14,7 +14,7 @@ class Board:
             print("|{0}|".format("|".join(Line)))
 
     def DropPeice(self,Column):
-        for X in list(reversed(self.Board[Column])):
+        for X,Y in enumerate(self.Board[Column]):
             print()
 
 
