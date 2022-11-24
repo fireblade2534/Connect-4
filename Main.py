@@ -111,7 +111,7 @@ def RunGame():
     Height=6
 
     GameBoard=Board(Width,Height)
-    Move="R"
+    Move="Y"
     ClearTerminal()
     GameBoard.PrintBoard()
     while True:
