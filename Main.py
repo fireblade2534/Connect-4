@@ -2,6 +2,26 @@
 def AllSame(List):
     return len(list(set(List))) == 1
 
+def GetValidResponse(Question,Type=str,Max="None",Min="None"):
+    if Max == "None":
+        Max=10 ** 20
+    if Min == "None":
+        Min=-(10 ** 20)
+    while True:
+
+        Input=input(Question)
+        try:
+            Input=Type(Input)
+            if Type == int or Type == float:
+                if Input >= Min and Input <= Max:
+                    return Input
+                else:
+                    print(f"Please enter a number within {Min} and {Max}" )
+            else:
+                return Input
+        except:
+            print(f"Please enter a value of type {Type.__name__}")
+        
 class Board:
     def __init__(self,Width,Height,WinNumber=4):
         self.Width=Width
@@ -32,7 +52,7 @@ class Board:
             
             CounterY=0
             while CounterY <= self.Height - self.WinNumber or CounterY == 0:
-                print(CounterX,CounterY)
+                #print(CounterX,CounterY)
                 
                 ListRD=[]
                 for A in range(0,self.WinNumber):
@@ -52,7 +72,7 @@ class Board:
                 if AllSame(ListRD) and ListRD[0] != " ":
                     return [True,ListRD[0]]
                 
-                print(ListLD,ListRD)
+                #print(ListLD,ListRD)
                 CounterY+=1
             CounterX+=1
         return [False]
@@ -84,6 +104,10 @@ class Board:
 
 
 GameBoard=Board(7,6)
+Move="R"
+while True:
+    GameBoard.PrintBoard()
+    Input=GetValidResponse(f"{Move} Move (Column): ",Type=int)
 print(GameBoard.Board)
 GameBoard.PrintBoard() 
 
