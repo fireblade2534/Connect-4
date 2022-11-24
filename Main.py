@@ -111,7 +111,7 @@ def RunGame():
     Height=6
 
     GameBoard=Board(Width,Height)
-    Move="Y"
+    Move="🟡"
     ClearTerminal()
     GameBoard.PrintBoard()
     while True:
@@ -124,10 +124,10 @@ def RunGame():
             
                 
             ClearTerminal()
-            if Move == "R":
-                Move="Y"
+            if Move == "🔴":
+                Move="🟡"
             else:
-                Move="R"
+                Move="🔴"
             GameBoard.PrintBoard()
             Dia=GameBoard.CheckDiagonals()
             Row=GameBoard.CheckRow()
