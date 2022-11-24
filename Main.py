@@ -4,19 +4,20 @@ class Board:
         self.Height=Height
         self.Board=[]
         for X in range(Width):
-            self.Board.append(["" for Y in range(Height)])
+            self.Board.append([" " for Y in range(Height)])
     
     def PrintBoard(self):
         for Y in range(self.Height):
             Line=[]
             for X in self.Board:
                 Line.append(X[Y])
-            print(Line)
+            print("|{0}|".format("|".join(Line)))
 
     def DropPeice(self,Column):
-        for X in self.Board[Column]:
+        for X in list(reversed(self.Board[Column])):
             print()
 
 
 GameBoard=Board(5,5)
-        
+GameBoard.PrintBoard() 
+GameBoard.DropPeice(0)
