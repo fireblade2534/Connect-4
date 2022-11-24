@@ -2,6 +2,10 @@
 def AllSame(List):
     return len(list(set(List))) == 1
 
+def ClearTerminal():
+    for X in range(0,300):
+        print("  ")
+
 def GetValidResponse(Question,Type=str,Max="None",Min="None"):
     if Max == "None":
         Max=10 ** 20
@@ -102,18 +106,47 @@ class Board:
             CounterY+=1
         return [False]
 
+def RunGame():
+    Width=7
+    Height=6
 
-GameBoard=Board(7,6)
-Move="R"
-while True:
+    GameBoard=Board(Width,Height)
+    Move="R"
+    ClearTerminal()
     GameBoard.PrintBoard()
-    Input=GetValidResponse(f"{Move} Move (Column): ",Type=int)
-print(GameBoard.Board)
-GameBoard.PrintBoard() 
+    while True:
+        
+        Input=GetValidResponse(f"{Move} Move (Column): ",Type=int,Max=Width,Min=1)
 
+        if GameBoard.DropPeice(Input - 1,Move) == False:
+            print("Column {Input} is full")
+        else:
+            
+                
+            ClearTerminal()
+            if Move == "R":
+                Move="Y"
+            else:
+                Move="R"
+            GameBoard.PrintBoard()
+            Dia=GameBoard.CheckDiagonals()
+            Row=GameBoard.CheckRow()
+            Col=GameBoard.CheckCol()
+            Winner=""
+            if Dia[0]:
+                Winner=Dia[1]
+            elif Row[0]:
+                Winner=Row[1]
+            elif Col[0]:
+                Winner=Col[1]
+            
+            if Winner != "":
+                print(f"{Winner} has won!")
+                Input=input("Again (Y/N): ")
+                if Input.lower() == "y":
+                    return
+                else:
+                    exit()
 
-print("\n\n")
-GameBoard.PrintBoard() 
-print(GameBoard.CheckDiagonals())
-print(GameBoard.CheckRow())
-print(GameBoard.CheckCol())
+while True:
+    RunGame()
