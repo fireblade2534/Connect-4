@@ -13,11 +13,16 @@ class Board:
                 Line.append(X[Y])
             print("|{0}|".format("|".join(Line)))
 
-    def DropPeice(self,Column):
+    def DropPeice(self,Column,Peice):
         for X,Y in enumerate(self.Board[Column]):
-            print()
+            if self.Board[Column][self.Height - X - 1] == " ":
+                self.Board[Column][self.Height - X - 1]=Peice
+                return True
+        return False
 
 
 GameBoard=Board(5,5)
 GameBoard.PrintBoard() 
-GameBoard.DropPeice(0)
+print("\n\n")
+GameBoard.DropPeice(0,"R")
+GameBoard.PrintBoard()
